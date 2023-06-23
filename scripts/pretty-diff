@@ -1,0 +1,18 @@
+#!/bin/bash
+
+if (! git rev-parse --is-inside-work-tree > /dev/null); then
+  echo "Not in a git repo! ¯\_(ツ)_/¯"
+  exit 0
+fi
+
+git -c color.status=always status --short |
+  fzf --height 100% --ansi \
+    --preview '(git diff HEAD --color=always -- {-1} | sed 1,4d)' \
+    --preview-window right:65% \
+    --bind ctrl-u:preview-up,ctrl-d:preview-down |
+  cut -c4- |
+  sed 's/.* -> //' |
+  tr -d '\n' |
+  xclip -se c -i
+	
+
