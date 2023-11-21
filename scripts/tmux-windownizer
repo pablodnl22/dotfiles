@@ -1,0 +1,11 @@
+#!/bin/bash
+
+project_dir=$(~/dotfiles/scripts/projects)
+if [ ! -d "$project_dir" ]; then
+    echo "No projects directory found"
+    exit 1
+fi
+
+project=$(basename $project_dir)
+tmux new-window -n "$project" -c "$project_dir"
+
