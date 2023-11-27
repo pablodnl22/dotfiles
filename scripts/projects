@@ -1,4 +1,4 @@
 #!/bin/bash
 
-{ find ~/Projects -maxdepth 1 -type d; find ~/PhpstormProjects -maxdepth 1 -type d; } | fzf 
+{ find -L ~/Projects -maxdepth 1 -type d; find -L ~/PhpstormProjects -maxdepth 1 -type d; } | fzf 
 

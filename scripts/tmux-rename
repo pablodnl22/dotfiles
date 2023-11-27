@@ -1,0 +1,8 @@
+#!/bin/bash
+
+while read line; do
+    project=$(basename $line)
+    tmux rename-window -t $(tmux display-message -p '#I') $project
+
+    echo $line
+done
