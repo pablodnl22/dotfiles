@@ -106,18 +106,33 @@ source $ZSH/oh-my-zsh.sh
 alias gfom="git fetch origin master:master"
 alias bat="batcat"
 
-alias pretty-diff="~/dotfiles/script/bash-tools/pretty-diff"
+alias pretty-diff="~/Documentos/script/bash-tools/pretty-diff"
 alias vimotion="cd ~/Documentos/vimotion && nvim ."
-alias k9s-ctx="~/dotfiles/script/bash-tools/k9s-ctx"
+alias fancy-checkout="~/Documentos/script/bash-tools/fancy-checkout"
+alias docker-connect="~/Documentos/script/bash-tools/docker-connect"
+alias k9s-ctx="~/Documentos/script/bash-tools/k9s-ctx"
 
 function cdToGivenProject() {
-	cd $(~/Documentos/script/bash-tools/projects)
+    project_dir=$(~/dotfiles/scripts/projects | ~/dotfiles/scripts/tmux-rename)  # Set the correct path to your projects directory
+    if [ ! -d "$project_dir" ]; then
+        echo "No projects directory found"
+        return 1
+    fi
+    cd "$project_dir" || return 1  # Use double-quotes around the variable and use || for safer directory change
 }
 
-alias proj='cdToGivenProject'
 alias Pj='cdToGivenProject'
+alias Pjc="~/dotfiles/scripts/tmux-windownizer"
 
 export EDITOR='nvim'
+
+_reverse_search() {
+    setopt hist_ignore_all_dups 
+    local selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | fzf)
+    LBUFFER=$selected_command 
+}
+
+export PATH="$HOME/go/bin:$PATH"
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
