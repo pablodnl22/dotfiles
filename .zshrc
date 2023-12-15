@@ -103,6 +103,23 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+_reverse_search() {
+    setopt hist_ignore_all_dups 
+    local selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | fzf)
+    LBUFFER=$selected_command 
+}
+
+#zle -N _reverse_search
+#bindkey '^r' _reverse_search
+
+bring_to_foreground() {
+    fg
+}
+
+zle -N bring_to_foreground
+bindkey '^F' bring_to_foreground
+
 alias gfom="git fetch origin master:master"
 alias bat="batcat"
 
@@ -126,11 +143,6 @@ alias Pjc="~/dotfiles/scripts/tmux-windownizer"
 
 export EDITOR='nvim'
 
-_reverse_search() {
-    setopt hist_ignore_all_dups 
-    local selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | fzf)
-    LBUFFER=$selected_command 
-}
 
 export PATH="$HOME/go/bin:$PATH"
 
@@ -138,5 +150,3 @@ export PATH="$HOME/go/bin:$PATH"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 [ -z "$TMUX" ] && exec tmux
-#zle -N _reverse_search
-#bindkey '^r' _reverse_search
