@@ -25,17 +25,20 @@ else
 fi
 
 
-local return_code="%(?..%F{red}%? ↵%f)"
+#local return_code="%(?..%F{red}%? ↵%f)"
+# display 🔥 if last command failed
+local return_code="%(?..%F{red} 🔥%f)"
+
+# if return code is 0 then current_dir is blue otherwise red
+local current_dir="%B%F{%(? blue red)}%~%f%b"
 
 #local user_host="${PR_USER}%F{cyan}@${PR_HOST}"
 #local jobs="%F{green}%(1j. %j.)%f"
 local jobs="%F{green}%(1j. ⚡.)%f"
-local current_dir="%B%F{blue}%~%f%b"
 local git_branch='$(git_prompt_info)'
 
-PROMPT="╭─ ${current_dir}${jobs}\$(ruby_prompt_info) ${git_branch}
+PROMPT="╭─ ${current_dir}${return_code}${jobs}\$(ruby_prompt_info) ${git_branch}
 ╰─$PR_PROMPT "
-RPROMPT="${return_code}"
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%F{yellow}‹"
 ZSH_THEME_GIT_PROMPT_SUFFIX="› %f"
