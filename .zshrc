@@ -104,17 +104,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-_reverse_search() {
-    setopt hist_ignore_all_dups 
-    local selected_command=$(fc -rl 1 | awk '{$1="";print substr($0,2)}' | fzf)
-    LBUFFER=$selected_command 
-}
-
-#zle -N _reverse_search
-#bindkey '^r' _reverse_search
-
 bring_to_foreground() {
     fg
+    #if last return code is 0, then the command was successful
+    if [ $? -eq 0 ]; then
+        zle reset-prompt
+        return 0
+    fi
+    return 1
 }
 
 zle -N bring_to_foreground
@@ -123,11 +120,8 @@ bindkey '^F' bring_to_foreground
 alias gfom="git fetch origin master:master"
 alias bat="batcat"
 
-alias pretty-diff="~/Documentos/script/bash-tools/pretty-diff"
-alias vimotion="cd ~/Documentos/vimotion && nvim ."
-alias fancy-checkout="~/Documentos/script/bash-tools/fancy-checkout"
-alias docker-connect="~/Documentos/script/bash-tools/docker-connect"
-alias k9s-ctx="~/Documentos/script/bash-tools/k9s-ctx"
+alias vimotion="cd ~/Documentos/vimotion && nvim"
+alias pretty-diff="~/dotfiles/scripts/pretty-diff"
 
 function cdToGivenProject() {
     project_dir=$(~/dotfiles/scripts/projects | ~/dotfiles/scripts/tmux-rename)  # Set the correct path to your projects directory
@@ -150,3 +144,9 @@ export PATH="$HOME/go/bin:$PATH"
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
 [ -z "$TMUX" ] && exec tmux
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+eval "$(fzf --zsh)"
