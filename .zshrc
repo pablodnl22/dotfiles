@@ -150,3 +150,19 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 eval "$(fzf --zsh)"
+
+export BOUNDARY_ADDR=https://hashicorp-boundary.fpkmon.com
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+# pnpm
+export PNPM_HOME="/home/ptorres/.local/share/pnpm"
+case ":$PATH:" in
+  *":$PNPM_HOME:"*) ;;
+  *) export PATH="$PNPM_HOME:$PATH" ;;
+esac
+# pnpm end

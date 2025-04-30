@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Raise Terminal
+Comment=Raise your current terminal
+Exec=/bin/bash -c "~/.config/raise-terminal/raiseterminal.sh"
+Icon=amarok
+Terminal=false
+Type=Application
+Categories=Utility;
