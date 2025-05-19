@@ -1,0 +1,19 @@
+---
+- name: Install shell configs
+  hosts: localhost
+  connection: local
+  become: false
+
+  vars:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+
+  tasks:
+    - name: Copy zsh configuration
+      copy:
+        src: "{{ playbook_dir }}/../.zshrc"
+        dest: "{{ home_dir }}/.zshrc"
+    
+    - name: Copy tmux configuration
+      copy:
+        src: "{{ playbook_dir }}/../.tmux.conf"
+        dest: "{{ home_dir }}/.tmux.conf"
