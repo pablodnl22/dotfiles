@@ -1,0 +1,16 @@
+---
+- name: Apply system configuration
+  hosts: localhost
+  become: false
+
+  vars:
+    home_dir: "{{ lookup('env', 'HOME') }}"
+    config_dir: "{{ home_dir }}/.config"
+    oh_my_zsh_dir: "{{ home_dir }}/.oh-my-zsh"
+    project_root_dir: "{{ playbook_dir }}/../.."
+
+  roles:
+    - desktop
+    - shell
+    - kitty
+    - i3

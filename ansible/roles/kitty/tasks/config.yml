@@ -1,0 +1,13 @@
+# Kitty configuration
+- name: Ensure kitty config directory exists
+  file:
+    path: "{{ config_dir }}/kitty"
+    state: directory
+    mode: '0755'
+
+- name: Copy kitty configuration
+  copy:
+    src: "{{ project_root_dir }}/kitty/"
+    dest: "{{ config_dir }}/kitty/"
+    directory_mode: '0755'
+

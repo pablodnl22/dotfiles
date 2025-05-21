@@ -1,0 +1,12 @@
+- name: Install desktop utilities
+  become: true
+  apt:
+    name:
+      - feh
+      - flameshot
+      - thunar
+      - xclip
+      - xdotool
+      - lxappearance
+    state: present
+    update_cache: true
