@@ -1,0 +1,19 @@
+---
+- name: Install packages
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Install desktop utilities
+      apt:
+        name:
+          - feh
+          - flameshot
+          - thunar
+          - xclip
+          - xdotool
+          - lxappearance
+        state: present
+        update_cache: true
+
+    - name: Make Thunar the default file manager
+      command: xdg-mime default thunar.desktop inode/directory application/x-gnome-saved-search
