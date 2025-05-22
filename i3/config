@@ -246,6 +246,7 @@ exec_always --no-startup-id ~/.config/polybar/launch.sh
 
 exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.png
 
+exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
 
 # --------------------------------
 # CUSTOM KEYS START
