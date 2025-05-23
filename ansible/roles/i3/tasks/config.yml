@@ -45,13 +45,23 @@
     state: directory
     mode: '0755'
 
-- name: Copy i3 configuration file
+- name: Copy touchpad configuration
   copy:
-    src: "{{ project_root_dir }}/i3/config"
-    dest: "{{ config_dir }}/i3/config"
+    src: "{{ project_root_dir }}/i3/touchpad.sh"
+    dest: "{{ config_dir }}/i3/touchpad.sh"
+
+- name: Make touchpad script executable
+  file:
+    path: "{{ config_dir }}/i3/touchpad.sh"
+    mode: '0755'
 
 - name: Copy i3 wallpaper
   copy:
     src: "{{ project_root_dir }}/i3/wp7041138-golang-wallpapers2.png"
     dest: "{{ config_dir }}/i3/wallpaper.png"
+
+- name: Copy i3 configuration file
+  copy:
+    src: "{{ project_root_dir }}/i3/config"
+    dest: "{{ config_dir }}/i3/config"
 

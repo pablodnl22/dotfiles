@@ -252,8 +252,9 @@ exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHO
 # CUSTOM KEYS START
 # ------------------------------------------
 exec --no-startup-id nm-applet
-exec --no-startup-id xinput set-prop 9 "libinput Tapping Enabled" 1
-exec --no-startup-id xinput set-prop 9 "libinput Natural Scrolling Enabled" 1
+
+# apply touchpad config
+exec_always --no-startup-id ~/.config/i3/touchpad.sh
 
 bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
 bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution
