@@ -4,6 +4,8 @@
     name:
       - feh
       - flameshot
+      - fzf
+      - ripgrep
       - thunar
       - xclip
       - xdotool
