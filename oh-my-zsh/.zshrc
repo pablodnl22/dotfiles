@@ -121,10 +121,9 @@ alias gfom="git fetch origin master:master"
 alias bat="batcat"
 
 alias vimotion="cd ~/Documentos/vimotion && nvim"
-alias pretty-diff="~/dotfiles/scripts/pretty-diff"
 
 function cdToGivenProject() {
-    project_dir=$(~/dotfiles/scripts/projects | ~/dotfiles/scripts/tmux-rename)  # Set the correct path to your projects directory
+    project_dir=$(projects | tmux-rename)  # Set the correct path to your projects directory
     if [ ! -d "$project_dir" ]; then
         echo "No projects directory found"
         return 1
@@ -133,7 +132,6 @@ function cdToGivenProject() {
 }
 
 alias Pj='cdToGivenProject'
-alias Pjc="~/dotfiles/scripts/tmux-windownizer"
 
 export EDITOR='nvim'
 
@@ -143,13 +141,11 @@ export PATH="$HOME/go/bin:$PATH"
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 
-[ -z "$TMUX" ] && exec tmux
+#[ -z "$TMUX" ] && exec tmux
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-eval "$(fzf --zsh)"
 
 export BOUNDARY_ADDR=https://hashicorp-boundary.fpkmon.com
 
@@ -167,3 +163,11 @@ case ":$PATH:" in
 esac
 # pnpm end
 #
+#
+k9s() {
+  TERM=xterm-256color command k9s "$@"
+}
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

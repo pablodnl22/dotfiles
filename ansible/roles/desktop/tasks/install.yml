@@ -1,3 +1,11 @@
+#  add this ones
+#  sudo apt install i3
+#  sudo apt install polybar
+#  sudo apt install arandr
+#  sudo apt install brightnessctl
+#  sudo apt install tmux
+#  pipx
+
 - name: Install desktop utilities
   become: true
   apt:

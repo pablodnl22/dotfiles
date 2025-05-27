@@ -3,6 +3,7 @@
     src: "{{ project_root_dir }}/oh-my-zsh/.zshrc"
     dest: "{{ home_dir }}/.zshrc"
 
+# install tpm git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
 - name: Copy tmux configuration
   copy:
     src: "{{ project_root_dir }}/.tmux.conf"
@@ -12,3 +13,14 @@
   copy:
     src: "{{ project_root_dir }}/oh-my-zsh/custom-gnzh.zsh-theme"
     dest: "{{ oh_my_zsh_dir }}/custom/themes/custom-gnzh.zsh-theme"
+
+- name: "Move script to .local/bin"
+  copy:
+    src: "{{ project_root_dir }}/scripts/"
+    dest: "{{ home_dir }}/.local/bin/"
+    mode: '0755'
+
+
+#install ohmyzshplugins
+#git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
+#git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $ZSH_CUSTOM/plugins/zsh-syntax-highlighting

@@ -243,8 +243,7 @@ gaps inner 10
 
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf &
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-
-exec --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.png
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.png
 
 exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
 
@@ -265,9 +264,10 @@ bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% #i
 bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% #decrease sound volume
 bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle # mute sound
 #
-# # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Brightness control using brightnessctl
+bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set +10%
+bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 10%-
 
 # Alsa audio controls.
 #bindsym $mod+Shift+comma exec ~/.config/i3/scripts/alsa restore
