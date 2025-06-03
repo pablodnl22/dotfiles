@@ -25,7 +25,7 @@ fi
 
 # Decide whether to show percentage
 if [[ "$capacity" -le 30 ]]; then
-  output="$icon $capacity%"
+  output="$icon $capacity󱉸"
 else
   output="$icon"
 fi

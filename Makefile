@@ -15,3 +15,9 @@ install-check:
 
 install:
 	cd ansible && ansible-playbook playbooks/setup.yml -v -K
+
+install-i3-config:
+	cd ansible && ansible-playbook playbooks/setup.yml -v --tags i3-config
+
+install-polybar-config:
+	cd ansible && ansible-playbook playbooks/setup.yml -v --tags polybar-config

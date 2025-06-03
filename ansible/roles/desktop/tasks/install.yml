@@ -1,11 +1,3 @@
-#  add this ones
-#  sudo apt install i3
-#  sudo apt install polybar
-#  sudo apt install arandr
-#  sudo apt install brightnessctl
-#  sudo apt install tmux
-#  pipx
-
 - name: Install desktop utilities
   become: true
   apt:
@@ -18,5 +10,13 @@
       - xclip
       - xdotool
       - lxappearance
+      - i3
+      - polybar
+      - arandr
+      - brightnessctl
+      - tmux
+      - pipx
+      - network-manager-gnome
+      - rofi
     state: present
     update_cache: true

@@ -241,9 +241,17 @@ gaps inner 10
 # Optional: remove outer gaps when only one window is open
 # smart_gaps on
 
+# configure screenlayout
+exec_always --no-startup-id picom --config ~/.config/i3/hdmi-check.sh
+
+# Start the compositor
 exec_always --no-startup-id picom --config ~/.config/picom/picom.conf &
+
+# Start polybar
 exec_always --no-startup-id ~/.config/polybar/launch.sh
-exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper.png
+
+# Set wallpaper using feh
+exec_always --no-startup-id feh --bg-scale ~/.config/i3/wallpaper2.png
 
 exec --no-startup-id dbus-update-activation-environment --systemd DISPLAY XAUTHORITY XDG_CURRENT_DESKTOP
 

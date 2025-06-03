@@ -4,12 +4,18 @@
     path: "{{ config_dir }}/polybar"
     state: directory
     mode: '0755'
+  tags:
+    - i3-config
+    - polybar-config
 
 - name: Copy polybar configuration
   copy:
     src: "{{ project_root_dir }}/polybar/"
     dest: "{{ config_dir }}/polybar/"
     directory_mode: '0755'
+  tags:
+    - i3-config
+    - polybar-config
 
 - name: Find polybar scripts
   find:
@@ -17,6 +23,9 @@
     patterns: "*.sh"
     recurse: yes
   register: polybar_scripts
+  tags:
+    - i3-config
+    - polybar-config
 
 - name: Make polybar scripts executable
   file:
@@ -24,6 +33,9 @@
     mode: '0755'
   with_items: "{{ polybar_scripts.files }}"
   when: polybar_scripts.files | length > 0
+  tags:
+    - i3-config
+    - polybar-config
 
 # Picom configuration
 - name: Ensure picom config directory exists
@@ -31,12 +43,14 @@
     path: "{{ config_dir }}/picom"
     state: directory
     mode: '0755'
+  tags: i3-config
 
 - name: Copy picom configuration
   copy:
     src: "{{ project_root_dir }}/picom/"
     dest: "{{ config_dir }}/picom/"
     directory_mode: '0755'
+  tags: i3-config
 
 # i3 configuration
 - name: Ensure i3 config directory exists
@@ -44,24 +58,63 @@
     path: "{{ config_dir }}/i3"
     state: directory
     mode: '0755'
+  tags: i3-config
 
+#touch pad configuration
 - name: Copy touchpad configuration
   copy:
     src: "{{ project_root_dir }}/i3/touchpad.sh"
     dest: "{{ config_dir }}/i3/touchpad.sh"
+  tags: i3-config
 
 - name: Make touchpad script executable
   file:
     path: "{{ config_dir }}/i3/touchpad.sh"
     mode: '0755'
+  tags: i3-config
 
-- name: Copy i3 wallpaper
+#screenlayout configuration
+- name: Copy hdmi-layout-check
+  copy:
+    src: "{{ project_root_dir }}/i3/hdmi-check.sh"
+    dest: "{{ config_dir }}/i3/hdmi-check.sh"
+  tags: i3-config
+
+- name: Make hdmi-layout-check script executable
+  file:
+    path: "{{ config_dir }}/i3/hdmi-check.sh"
+    mode: '0755'
+  tags: i3-config
+
+- name: Copy hdmi-layout
+  copy:
+    src: "{{ project_root_dir }}/i3/hdmi-work-layout.sh"
+    dest: "{{ screenlayout_dir }}/hdmi-work-layout.sh"
+  tags: i3-config
+
+- name: Make hdmi-layout script executable
+  file:
+    path: "{{ screenlayout_dir }}/hdmi-work-layout.sh"
+    mode: '0755'
+  tags: i3-config
+
+#wallpapers
+- name: Copy i3 wallpaper 1
   copy:
     src: "{{ project_root_dir }}/i3/wp7041138-golang-wallpapers2.png"
     dest: "{{ config_dir }}/i3/wallpaper.png"
+  tags: i3-config
 
+- name: Copy i3 wallpaper 2
+  copy:
+    src: "{{ project_root_dir }}/i3/wallpaper2.png"
+    dest: "{{ config_dir }}/i3/wallpaper2.png"
+  tags: i3-config
+
+# Copy i3 configuration
 - name: Copy i3 configuration file
   copy:
     src: "{{ project_root_dir }}/i3/config"
     dest: "{{ config_dir }}/i3/config"
+  tags: i3-config
 

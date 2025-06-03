@@ -6,6 +6,7 @@
   vars:
     home_dir: "{{ lookup('env', 'HOME') }}"
     config_dir: "{{ home_dir }}/.config"
+    screenlayout_dir: "{{ home_dir }}/.screenlayout"
     oh_my_zsh_dir: "{{ home_dir }}/.oh-my-zsh"
     project_root_dir: "{{ playbook_dir }}/../.."
 
