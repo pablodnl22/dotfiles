@@ -1,0 +1,57 @@
+#!/bin/bash
+
+# Rofi script to open favorite folders in Thunar
+# Save as ~/.local/bin/rofi-folders.sh and make executable with: chmod +x ~/.local/bin/rofi-folders.sh
+
+# Define your favorite folders here
+# Format: "Display Name|/path/to/folder"
+folders=(
+    "Home|$HOME"
+    "Documentos|$HOME/Documentos"
+    "Downloads|$HOME/Downloads"
+    "Descargas|$HOME/Descargas"
+    "Imagenes|$HOME/Imágenes"
+    "Videos|$HOME/Vídeos"
+    "Music|$HOME/Música"
+    "Desktop|$HOME/Escritorio"
+    "Projects|$HOME/Projects"
+    "Projects/pablodnl|$HOME/Projects/pablodnl"
+    "Projects/source|$HOME/Projects/source"
+    "Projects/work|$HOME/Projects/work"
+    "Config|$HOME/.config"
+    "Root|/"
+    "Tmp|/tmp"
+    "Usr Local|/usr/local"
+    "Opt|/opt"
+)
+
+# Create the menu options (just the display names)
+menu_options=""
+for folder in "${folders[@]}"; do
+    display_name=$(echo "$folder" | cut -d'|' -f1)
+    menu_options="$menu_options$display_name\n"
+done
+
+# Show rofi menu and get selection
+selected=$(echo -e "$menu_options" | rofi -dmenu -i -p "Open folder:")
+
+# If nothing selected, exit
+if [ -z "$selected" ]; then
+    exit 0
+fi
+
+# Find the corresponding path
+for folder in "${folders[@]}"; do
+    display_name=$(echo "$folder" | cut -d'|' -f1)
+    folder_path=$(echo "$folder" | cut -d'|' -f2)
+
+    if [ "$display_name" = "$selected" ]; then
+        # Check if folder exists
+        if [ -d "$folder_path" ]; then
+            thunar "$folder_path" &
+        else
+            notify-send "Error" "Folder '$folder_path' does not exist" -u critical
+        fi
+        break
+    fi
+done
