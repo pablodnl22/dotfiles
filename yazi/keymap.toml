@@ -1,4 +1,4 @@
-[[manager.prepend_keymap]]
+[[mgr.prepend_keymap]]
 on = "<F12>"
-run = 'shell "flameshot gui -p \"$PWD\""'
+run = 'shell -- flameshot gui -p "$PWD"'
 desc = "Screenshot to current directory"
