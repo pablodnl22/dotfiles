@@ -1,0 +1,10 @@
+- name: Ensure yazi config directory exists
+  file:
+    path: "{{ config_dir }}/yazi"
+    state: directory
+    mode: '0755'
+
+- name: Copy yazi keymap configuration
+  copy:
+    src: "{{ project_root_dir }}/yazi/keymap.toml"
+    dest: "{{ config_dir }}/yazi/keymap.toml"
