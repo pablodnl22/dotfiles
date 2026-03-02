@@ -4,7 +4,6 @@
     name:
       - feh
       - flameshot
-      - fzf
       - ripgrep
       - thunar
       - xclip
@@ -20,3 +19,13 @@
       - rofi
     state: present
     update_cache: true
+
+- name: Clone fzf repository
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ ansible_env.HOME }}/.fzf"
+    depth: 1
+    update: yes
+
+- name: Install fzf
+  command: "{{ ansible_env.HOME }}/.fzf/install --all --no-update-rc"
