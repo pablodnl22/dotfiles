@@ -45,6 +45,7 @@ installable on a fresh machine with a single Ansible playbook.
 | 📊 Status bar | **Polybar** | Workspaces, system stats, network, tray |
 | 🖼️ Compositor | **picom** | Transparency, blur, shadows |
 | 🐱 Terminal | **kitty** | GPU-accelerated, themed |
+| 🔍 Launcher | **rofi** | App launcher & menus — windows11-list-dark theme ([`rofi/`](rofi/)) |
 | 🐚 Shell | **zsh + oh-my-zsh** | Prompt, aliases, plugins |
 | 🧩 Multiplexer | **tmux** | Sessions, panes, custom keybindings |
 | 📁 File manager | **yazi** | Fast terminal file browser |
