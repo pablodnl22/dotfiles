@@ -20,6 +20,16 @@
     dest: "{{ home_dir }}/.local/bin/"
     mode: '0755'
 
+- name: Create Projects directory structure
+  file:
+    path: "{{ home_dir }}/Projects/{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - work
+    - pablodnl
+    - source
+
 
 #install ohmyzshplugins
 #git clone https://github.com/zsh-users/zsh-autosuggestions.git $ZSH_CUSTOM/plugins/zsh-autosuggestions
