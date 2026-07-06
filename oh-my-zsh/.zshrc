@@ -136,7 +136,7 @@ alias Pj='cdToGivenProject'
 export EDITOR='nvim'
 
 
-export PATH="$HOME/go/bin:$PATH"
+export PATH=$PATH:/usr/local/go/bin
 
 
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
