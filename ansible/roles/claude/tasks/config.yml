@@ -1,0 +1,11 @@
+- name: Ensure Claude config directory exists
+  file:
+    path: "{{ home_dir }}/.claude"
+    state: directory
+    mode: '0755'
+
+# Includes the tmux status hooks (@agent emoji per window) that pair with .tmux.conf
+- name: Copy Claude Code settings
+  copy:
+    src: "{{ project_root_dir }}/claude/settings.json"
+    dest: "{{ home_dir }}/.claude/settings.json"
