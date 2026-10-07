@@ -11,6 +11,10 @@
 
 set $mod Mod1
 
+# Jump to the workspace of a window that requests focus (e.g. browser when
+# opening a URL from another app), instead of just marking it urgent
+focus_on_window_activation focus
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 font pango:monospace 15px
@@ -266,6 +270,10 @@ exec --no-startup-id nm-applet
 
 # apply touchpad config
 exec_always --no-startup-id ~/.config/i3/touchpad.sh
+
+# Jump to windows that set the urgency hint (Chrome does this instead of a
+# real activation request when opening a URL in an existing instance)
+exec_always --no-startup-id ~/.config/i3/focus-urgent.sh
 
 bindsym $mod+Shift+s exec --no-startup-id ~/dotfiles/bin/monitor
 bindsym $mod+Shift+n exec --no-startup-id ~/dotfiles/bin/resolution

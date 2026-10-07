@@ -73,6 +73,19 @@
     mode: '0755'
   tags: i3-config
 
+#focus urgent windows listener
+- name: Copy focus-urgent script
+  copy:
+    src: "{{ project_root_dir }}/i3/focus-urgent.sh"
+    dest: "{{ config_dir }}/i3/focus-urgent.sh"
+  tags: i3-config
+
+- name: Make focus-urgent script executable
+  file:
+    path: "{{ config_dir }}/i3/focus-urgent.sh"
+    mode: '0755'
+  tags: i3-config
+
 #screenlayout configuration
 - name: Copy hdmi-layout-check
   copy:
